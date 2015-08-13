@@ -22,10 +22,9 @@ import java.util.Random;
  */
 public class LocationService extends IntentService {
 
-    //We crearte
+    //We create the local variables for the class
     private DataBaseManager dbm;
     private Location currentLocation;
-    //private LocationService locationService = new LocationService();
     private LocationManager lm;
     ArrayList<Latitude> latitudesInDb;
     ArrayAdapter<Latitude> latitudeAdapter;
@@ -37,6 +36,7 @@ public class LocationService extends IntentService {
     public LocationService(){
         super("LocationService");
     }
+    //method OnHandleIntent that manage the intent
     protected  void onHandleIntent(Intent i){
         dbm = new DataBaseManager(this);
         dbm.open();
@@ -51,32 +51,7 @@ public class LocationService extends IntentService {
 
     }
 
-    /*public void onCreate() {
-        super.onCreate();
-        dbm = new DataBaseManager(this);
-        dbm.open();
-            latitudesInDb=dbm.getLatitude();
-            longitudInDb=dbm.getLongitud();
-        dbm.close();
-        lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        wifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-        currentLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        upDateLocation();
-    }
-    */
-
-   /* public class MyBinder extends Binder {
-        public LocationService getService() {
-            return LocationService.this;
-        }
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return new MyBinder();
-    }
-*/
-
+    //LocationListener with what we check the location
     LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             // Called when a new location is found by the network location provider.
@@ -99,13 +74,9 @@ public class LocationService extends IntentService {
         }
     };
 
-    //public void upDateLocation() {
-      //  lm.removeUpdates(locationListener);
-       // lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 15, 10, locationListener);
-
-
-   // }
-
+    //method that change the provider thinking on the ranges of the diferents networks trying to save batery. Range of network 1,5km
+    //range of gps 100m and we check if we are inside the zone of the wifi every 5 min turning on the gps and later turn off and turn again
+    //the network provider
     public void changeProvider(Location location) {
 
         Location marker = new Location("");
@@ -151,7 +122,7 @@ public class LocationService extends IntentService {
         }
     }
 
-
+    //checks if the location is inside the range zone of the wifi, if it's correct it return true
     public boolean check(Location location) {
 
         Location marker = new Location("provider");
@@ -171,6 +142,7 @@ public class LocationService extends IntentService {
         return false;
 
     }
+    //it's a method that call check, and the turn on the wifi if the answer it's true
     public void wifi(){
 
         if(check(currentLocation)){
