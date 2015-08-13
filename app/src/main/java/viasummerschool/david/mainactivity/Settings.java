@@ -39,25 +39,24 @@ public class Settings extends ListActivity {
             placesInDb=dbm.getPlaces();
             latitudesInDb=dbm.getLatitude();
             longitudInDb=dbm.getLongitud();
-       // Log.i("TESTING", placesInDb.size() + "");
         dbm.close();
-       // Log.i("TESTING2", placesInDb.size() + "");
         pAdapter = new ArrayAdapter<Places>(this, android.R.layout.simple_list_item_1, android.R.id.text1, placesInDb);
         lv.setAdapter(pAdapter);
 
     }
-
+    //sends the user to theMapsView Location
     public void addLocation(View view){
         Intent i = new Intent(this, MapsActivity.class);
         startActivity(i);
     }
+    //sends the user to the start_screen_activity
     public void goToStartActivity(View view){
         Intent i = new Intent(this, Screen_Start.class);
         startActivity(i);
     }
 
 
-
+    //allows the user to delete from the ListView while click on an item
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         dbm.open();
@@ -71,15 +70,4 @@ public class Settings extends ListActivity {
 
 
     }
-
-  //  public void onClick(DialogInterface dialog, int item) {
-  //       lv.setOnItemClickListener(new OnItemClickListener() {
-
-    //    public void onItemClick(AdapterView<?> parent, View view,int position, long id){
-      //  dbm.open();
-       //     dbm.delete(placesInDb.get(position).getId());
-       //     placesInDb.clear();
-        //dbm.close();
-       // }
-    //});}
 }
