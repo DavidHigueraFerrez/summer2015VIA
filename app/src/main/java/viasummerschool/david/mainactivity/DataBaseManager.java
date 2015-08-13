@@ -29,21 +29,22 @@ public class DataBaseManager {
         dataBase = new DataBase(context, tableName, null, 1);
     }
 
-
+    //open the dataBase
     public void open(){
         bdd = dataBase.getWritableDatabase();
     }
 
-
+    //closes the dataBase
     public void close(){
 
         bdd.close();
     }
-
+    //delete the dataBase
     public void delete(int id){
 
         bdd.delete(tableName, "id" + "=" + id, null);
     }
+    //insertValues on the dataBase
     public void insertValue(String name, double latitude, double longitud){
         ContentValues values = new ContentValues();
         values.put(rowPlaces, name);
@@ -52,6 +53,7 @@ public class DataBaseManager {
         bdd.insert(tableName, null, values);
 
     }
+    //pointer that search for the placesList on the dataBase
     ArrayList getPlaces(){
         ArrayList<Places> entry = new ArrayList<>();
         Cursor c = bdd.query(tableName, new String[]{"id","places","latitude", "longitud"},null , null, null, null, null);
@@ -64,7 +66,7 @@ public class DataBaseManager {
         return entry;
     }
 
-
+    //Pointer that search the Latitude of the dataBase
     ArrayList getLatitude(){
         ArrayList<Latitude> entry = new ArrayList<>();
         int i =0;
@@ -76,6 +78,7 @@ public class DataBaseManager {
         }
         return entry;
     }
+    //pointer that searchs the longitud of the dataBase
     ArrayList getLongitud(){
         ArrayList<Longitud> entry = new ArrayList<>();
         Cursor c = bdd.query(tableName, new String[]{"id","places","latitude", "longitud"},null , null, null, null, null);
