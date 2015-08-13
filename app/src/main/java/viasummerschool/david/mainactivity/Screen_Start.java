@@ -16,21 +16,23 @@ public class Screen_Start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen__start);
     }
-
+    //sends the user to mapsView
     public void goToMaps(View view){
         Intent i = new Intent(this, MapsActivity.class);
         startActivity(i);
     }
+    //sends the user to Settings view
     public void goToSettings(View view){
         Intent i = new Intent(this, Settings.class);
         startActivity(i);
     }
-
+    //starts the service
     public void startLocationService(View view){
         Intent i = new Intent(Screen_Start.this, LocationService.class);
         Toast.makeText(getApplicationContext(), "ARRANCO", Toast.LENGTH_LONG).show();
         startService(i);
     }
+    //stops the service
     public void stopLocationService(View view){
         Intent i = new Intent(Screen_Start.this, LocationService.class);
         Toast.makeText(getApplicationContext(), "paramos", Toast.LENGTH_LONG).show();
