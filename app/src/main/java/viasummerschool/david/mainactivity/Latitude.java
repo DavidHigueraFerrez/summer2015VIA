@@ -1,8 +1,5 @@
 package viasummerschool.david.mainactivity;
 
-/**
- * Created by David on 9/8/15.
- */
 
 public class Latitude  {
     private int id;

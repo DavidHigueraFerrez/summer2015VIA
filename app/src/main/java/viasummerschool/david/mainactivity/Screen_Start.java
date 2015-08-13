@@ -2,10 +2,12 @@ package viasummerschool.david.mainactivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class Screen_Start extends Activity {
 
@@ -24,6 +26,16 @@ public class Screen_Start extends Activity {
         startActivity(i);
     }
 
+    public void startLocationService(View view){
+        Intent i = new Intent(Screen_Start.this, LocationService.class);
+        Toast.makeText(getApplicationContext(), "ARRANCO", Toast.LENGTH_LONG).show();
+        startService(i);
+    }
+    public void stopLocationService(View view){
+        Intent i = new Intent(Screen_Start.this, LocationService.class);
+        Toast.makeText(getApplicationContext(), "paramos", Toast.LENGTH_LONG).show();
+        stopService(i);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

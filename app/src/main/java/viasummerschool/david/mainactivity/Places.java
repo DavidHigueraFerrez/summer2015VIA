@@ -24,7 +24,6 @@ public class Places  {
     }
 
     public String getPlace() {
-
         return place;
     }
 

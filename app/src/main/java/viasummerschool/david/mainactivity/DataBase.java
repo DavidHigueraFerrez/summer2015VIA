@@ -12,9 +12,9 @@ public class DataBase extends SQLiteOpenHelper {
     Latitude latitude;
     Longitud longitud;
     private static final String LOCATIONS="locations";
-    private String tableDefault = "CREATE TABLE "+LOCATIONS+ " (" +
-            id+ "INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            places+ "STRING, " +  latitude+" DOUBLE, " +longitud+" DOUBLE" +
+    private String tableDefault = "CREATE TABLE "+LOCATIONS+ "(" +
+            " id " + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "places " + "STRING, " +  "latitude " +"DOUBLE, " +"longitud "+" DOUBLE" +
             ")";
 
 

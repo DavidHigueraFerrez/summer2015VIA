@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -17,7 +18,7 @@ public class DataBaseManager {
     private DataBase dataBase;
     private SQLiteDatabase bdd;
     private GoogleMap mMap;
-    String  tableName = "Locations";
+    String  tableName = "locations";
     String rowPlaces = "Places";
     String rowLatitude = "Latitude";
     String rowLongitud = "Longitud";
@@ -54,6 +55,8 @@ public class DataBaseManager {
     ArrayList getPlaces(){
         ArrayList<Places> entry = new ArrayList<>();
         Cursor c = bdd.query(tableName, new String[]{"id","places","latitude", "longitud"},null , null, null, null, null);
+        c.moveToFirst();
+        Log.i("TEST", c.getCount() + "");
         while(c.moveToNext()){
             //error while making getInt BE CAREFULL
             entry.add(new Places(c.getInt(0),c.getString(1)));
@@ -66,6 +69,7 @@ public class DataBaseManager {
         ArrayList<Latitude> entry = new ArrayList<>();
         int i =0;
         Cursor c = bdd.query(tableName, new String[]{"id","places","latitude", "longitud"},null , null, null, null, null);
+        c.moveToFirst();
         while(c.moveToNext()){
             //error while making getInt BE CAREFULL
             entry.add(new Latitude(c.getInt(0), c.getDouble(1)));
@@ -75,6 +79,7 @@ public class DataBaseManager {
     ArrayList getLongitud(){
         ArrayList<Longitud> entry = new ArrayList<>();
         Cursor c = bdd.query(tableName, new String[]{"id","places","latitude", "longitud"},null , null, null, null, null);
+        c.moveToFirst();
         while(c.moveToNext()){
             //error while making getInt BE CAREFULL
             entry.add(new Longitud(c.getInt(0), c.getDouble(1)));
