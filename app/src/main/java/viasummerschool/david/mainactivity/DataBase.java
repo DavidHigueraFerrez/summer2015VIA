@@ -12,6 +12,7 @@ public class DataBase extends SQLiteOpenHelper {
     Latitude latitude;
     Longitud longitud;
     private static final String LOCATIONS="locations";
+    //String that creates the table
     private String tableDefault = "CREATE TABLE "+LOCATIONS+ "(" +
             " id " + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "places " + "STRING, " +  "latitude " +"DOUBLE, " +"longitud "+" DOUBLE" +
@@ -22,12 +23,12 @@ public class DataBase extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
-
+    //create the table
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(tableDefault);
     }
-
+    //update the table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP table TEST");
