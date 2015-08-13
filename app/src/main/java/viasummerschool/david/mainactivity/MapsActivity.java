@@ -54,26 +54,7 @@ public class MapsActivity extends FragmentActivity {
         placesInDb = new ArrayList<>();
         setUpMapIfNeeded();
     }
-    /*public void start(View v) {
-        if(mBound) {
-                mService.upDateLocation();
-                Toast.makeText(getApplicationContext(), "ARRANCO", Toast.LENGTH_LONG).show();
-                }
-        else {
-                    Toast.makeText(getApplicationContext(), "Not bound", Toast.LENGTH_LONG).show();
-                }
-
-        }
-        */
-
-   /* protected void onResume() {
-        super.onResume();
-        setUpMapIfNeeded();
-        Intent i = new Intent(this, LocationService.class);
-        bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-    }
-    */
-
+   
     //method for making available the search on google maps
     public void onSearch(View view){
         List<Address> addressList = null;
@@ -106,6 +87,7 @@ public class MapsActivity extends FragmentActivity {
             mMap.animateCamera(CameraUpdateFactory.zoomOut());
         }
     }
+    //method for change the view of the map
     public void changeType(View view){
         if(mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL){
             mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
@@ -185,20 +167,5 @@ public class MapsActivity extends FragmentActivity {
             Toast.makeText(getApplicationContext(), "not marker selected", Toast.LENGTH_LONG).show();
         }
     }
-    /*private ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mBound = true;
-            LocationService.MyBinder mb = (LocationService.MyBinder)service;
-            mService = mb.getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-            mBound = false;
-        }
-    };
-    */
 
 }
